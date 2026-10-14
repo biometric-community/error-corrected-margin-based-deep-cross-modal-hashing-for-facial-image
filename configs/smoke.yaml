@@ -1,0 +1,38 @@
+paper:
+  slug: error-corrected-margin-based-deep-cross-modal-hashing-for-facial-image
+  title: "Error-Corrected Margin-Based Deep Cross-Modal Hashing for Facial Image Retrieval"
+data:
+  celeba_root: ../../datasets/celeba/extracted/celeba
+  root: ../../datasets/celeba/extracted/celeba
+  max_images: 512
+  max_queries: 32
+model:
+  image_size: 112
+  hash_bits: 63
+  attr_dim: 40
+  pretrained_backbone: true
+  margin_m: 6
+  ecc_e: 6
+train:
+  protocol: smoke
+  seed: 42
+  num_workers: 2
+  batch_size: 32
+  adcmh_epochs: 1
+  necd_epochs: 1
+  optimizer: adam
+  lr: 0.0001
+  weight_decay: 0.0001
+  theta: 1.0
+  lambda_reg: 0.1
+  gamma: 1.0
+eval:
+  batch_size: 64
+  top_k: 20
+  n_queries_per_arity: 16
+paths:
+  checkpoint_dir: outputs/checkpoints/smoke
+  log_dir: outputs/logs/smoke
+  pred_dir: outputs/predictions/smoke
+  figure_dir: outputs/figures/smoke
+device: cuda
